@@ -1,0 +1,634 @@
+body {
+  font-family: "Poppins", sans-serif; /* للنصوص العادية */
+  font-weight: 400;
+}
+
+h1, h2, h3 {
+  font-family: "Anton", Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase; /* باش يعطي ستايل سبور */
+  letter-spacing: 1px;       /* مسافة صغيرة بين الحروف */
+}
+
+p {
+  font-family: "Poppins", sans-serif; /* للنصوص العادية */
+  font-weight: 400;
+}
+
+header {
+     font-family: "Poppins", sans-serif; /* للنصوص العادية */
+      background-color: #ffffff;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: black;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* ظل خفيف */
+
+    }
+    header nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: black;
+      font-weight: bold;
+    }
+    header nav a:hover {
+        color: rgb(20, 20, 180);
+        transform: scale(1.05);
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    .cart {
+  display: flex;          /* ترتيب الأيقونات بجانب بعض */
+  gap: 15px;              /* مسافة بين الأيقونات */
+  font-size: 22px;
+}
+
+.cart a {
+  color: rgb(0, 0, 0);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.cart a:hover {
+  transform: scale(1.2);       /* تكبير عند المرور */
+  color: rgb(20, 20, 180);     /* تغيير اللون */
+}
+
+
+
+    
+.heroSection{
+    background-image: url('image/background.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 90vh;
+      position: relative;
+      color: rgb(255, 255, 255);
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+
+}
+
+.heroSection::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.763); 
+  z-index: 0;
+}
+
+.heroSection * {
+  position: relative;
+  z-index: 1; /* باش النص والأزرار يطلعو فوق الطبقة السوداء */
+}
+
+.heroSection img{
+    border-radius: 100em;
+    width: 200px;
+}
+.heroSection p{
+    font-family: "Tajawal", sans-serif;
+    font-size: 18px;
+}
+.heroSection a {
+  display: inline-flex;            /* نخلي الزر inline + flex */
+  align-items: center;             /* نوسّط النص عمودي */
+  justify-content: center;         /* نوسّط النص أفقي */
+  width: 140px;
+  height: 45px;
+  border: none;
+  border-radius: 25px;
+  color: #fff;
+  background-color: rgb(6, 6, 130);
+  text-decoration: none;
+  font-size: 18px;
+  letter-spacing: 1px;
+    position: relative;  /* باش يقدر ياخذ z-index */
+  z-index: 2;
+  cursor: pointer;
+  transition: all 0.3s ease;       /* أنيميشن عند الهوفر */
+}
+
+.heroSection a:hover{
+  background-color: rgb(20, 20, 180); /* زر أزرق أفتح عند الهوفر */
+  transform: scale(1.05);            /* يكبر شوية */
+    cursor: pointer;
+}
+
+.article {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+  gap: 20px; /* مسافة بين الكروت */
+  padding: 40px 20px; 
+  max-width: 1200px;
+  margin: 0 auto; /* توسيط القسم كامل */
+}
+
+.catalog-buttons {
+  text-align: center;
+  margin: 20px 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.catalog-buttons .btn {
+  margin: 10px;
+  font-family: "Poppins", sans-serif; /* للنصوص العادية */
+  padding: 12px 25px;
+  background: rgb(6, 6, 130);
+  color: #fff;
+  font-size: 16px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.catalog-buttons .btn:hover {
+  background: rgb(20, 20, 180);
+  transform: scale(1.05);
+}
+
+/* نخفي القسم كي ما يكونش مختار */
+.category {
+  display: none;
+}
+
+
+.catalog{
+    text-align: center; /* يخلي كل العناوين بالنص */
+     margin: 40px 0;
+}
+
+.card {
+  width: 250px;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* ظل خفيف */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover; /* يخلي الصورة متمركزة */
+}
+
+.carte_info {
+  padding: 15px;
+  text-align: center;
+}
+
+.carte_info h4 {
+  font-family: "Anton", sans-serif;
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #111;
+}
+
+.carte_info p {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: #444;
+}
+
+.carte_info a {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background-color: rgb(6, 6, 130);
+  color: #fff;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.carte_info a:hover {
+  background-color: rgb(20, 20, 180);
+  transform: scale(1.05);
+}
+
+.contact{
+   text-align: center; /* يخلي كل العناوين بالنص */
+     margin: 40px 0
+}
+
+.contact {
+  max-width: 800px;          /* عرض محدود باش ما يكونش عريض بزاف */
+  margin: 50px auto;         /* يخلي القسم كامل فالوسط */
+  padding: 20px;
+  background: #fff;          /* خلفية بيضاء نظيفة */
+  border-radius: 15px;       /* زوايا مدورة */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* ظل خفيف */
+}
+
+.contact h1 {
+  font-size: 32px;
+  text-align: center;        /* وسط العنوان */
+  margin-bottom: 30px;
+  color: #222;
+}
+
+.formulaire form {
+  display: flex;
+  flex-direction: column;    /* عناصر الفورم يجو تحت بعض */
+  gap: 15px;                 /* مسافة بين العناصر */
+}
+
+.formulaire input,
+.formulaire textarea {
+  padding: 12px 1px;
+  border: 1px solid #ccc;    /* إطار خفيف رمادي */
+  border-radius: 10px;       /* زوايا مدورة */
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  transition: border 0.3s ease;
+}
+
+.formulaire input:focus,
+.formulaire textarea:focus {
+  border-color: rgb(6, 6, 130); /* يتغير لون الإطار عند الكتابة */
+  outline: none;                /* نخفي الحدود الزرقاء الافتراضية */
+}
+
+.formulaire textarea {
+  min-height: 120px;          
+  resize: none;          
+}
+
+.formulaire button {
+  align-self: center;         /* يخلي الزر فالوسط */
+  padding: 12px 30px;
+  border: none;
+  border-radius: 20px;
+  background: rgb(6, 6, 130);
+  color: #fff;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  transition: 0.3s ease, transform 0.2s ease;
+}
+
+.formulaire button:hover {
+  background: rgb(20, 20, 180);
+  transform: scale(1.05);
+}
+
+.cart_page {
+     text-align: center; /* يخلي كل العناوين بالنص */
+     margin: 40px 0
+}
+
+.cart_page h1{
+  font-family: "Poppins", sans-serif;
+
+}
+.cart_page a{
+ display: inline-block;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background-color: rgb(0, 0, 0);
+  color: #ffffff;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.cart_page a:hover {
+  background-color: rgb(20, 20, 180);
+  transform: scale(1.05);
+}
+
+
+
+table {
+  width: 90%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+thead {
+  background: rgb(6, 6, 130);
+  color: #fff;
+}
+
+th, td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+  background: #f1f1f1;
+}
+
+/* 🗑️ زر الحذف */
+.delete-btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 8px;
+  background: #e63946;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.delete-btn:hover {
+  background: #c71c2c;
+}
+
+/* ➕ زر إضافة منتج */
+.add-product {
+  text-align: center;
+  margin: 30px;
+}
+
+.add-product a {
+  padding: 12px 25px;
+  background: rgb(6, 6, 130);
+  color: #fff;
+  font-size: 16px;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.add-product a:hover {
+  background: rgb(20, 20, 180);
+  transform: scale(1.05);
+}
+
+/* 🔽 فلتر الصنف */
+#categoryFilter {
+  margin: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #aaa;
+  font-size: 15px;
+}
+
+.add-product-form {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.add-product-form h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.add-product-form label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+.add-product-form input,
+.add-product-form select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.add-product-form button {
+  width: 100%;
+  padding: 12px;
+  background: rgb(6, 6, 130);
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.add-product-form button:hover {
+  background: rgb(20, 20, 180);
+}
+
+
+
+.product-page {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.product-image img {
+  width: 350px;
+  border-radius: 15px;
+}
+
+.product-details {
+  flex: 1;
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.price {
+  font-size: 20px;
+  font-weight: bold;
+  color: darkred;
+}
+
+.sizes button {
+  margin: 5px;
+  padding: 8px 15px;
+  border: 1px solid #ccc;
+  background: white;
+  color: #000000;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.sizes button:hover {
+  background: black;
+  color: white;
+}
+
+.order-form {
+  margin-top: 20px;
+}
+
+label {
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+}
+
+input, select, button {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background: #e60023;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #c3001d;
+}
+
+#total {
+  text-align: center;
+  font-size: 20px;
+  color: darkred;
+  margin: 15px 0;
+}
+
+.return a{
+  padding: 10px 20px;
+  border-radius: 20px;
+  background-color: rgb(0, 0, 0);
+  color: #ffffff;
+  font-size: 14px;
+  font-family: "Tajawal", sans-serif;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.return a:hover {
+  background-color: rgb(20, 20, 180);
+  transform: scale(1.05);
+}
+
+.edit-product-form{
+  max-width: 600px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+
+
+/* 📱 شاشات صغيرة (أقل من 768px) */
+@media (max-width: 768px) {
+  
+  header {
+    flex-direction: column;       /* يخلي اللوقو و اللينكات تحت بعض */
+    text-align: center;
+    gap: 10px;
+  }
+
+  header nav a {
+    display: block;
+    margin: 8px 0;
+  }
+
+  .heroSection {
+    height: 70vh; /* نقص الارتفاع باش يبان مليح فالموبايل */
+    padding: 20px;
+  }
+
+  .heroSection img {
+    width: 150px; /* صورة أصغر */
+  }
+
+  .heroSection p {
+    font-size: 16px; /* نص أصغر شوية */
+  }
+
+  .heroSection a {
+    width: 120px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .card {
+    width: 100%; /* الكارت تاخذ عرض كامل */
+  }
+
+  .card img {
+    height: 200px;
+  }
+
+  .contact {
+    padding: 15px;
+    margin: 20px;
+  }
+
+  .contact h1 {
+    font-size: 26px;
+  }
+
+  .formulaire input,
+  .formulaire textarea {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .formulaire button {
+    width: 100%; /* الزر يغطي عرض كامل */
+    border-radius: 10px;
+  }
+}
+
+/* 📱📱 شاشات صغيرة جدا (أقل من 480px) */
+@media (max-width: 480px) {
+  h1, h2, h3 {
+    font-size: 20px;
+  }
+
+  .heroSection {
+    height: auto; /* يخليها تتمدد حسب المحتوى */
+    padding: 40px 10px;
+  }
+
+  .heroSection img {
+    width: 120px;
+  }
+
+  .heroSection p {
+    font-size: 14px;
+  }
+
+  .heroSection a {
+    width: 100%;
+    max-width: 200px;
+    font-size: 14px;
+  }
+
+  .articles {
+    grid-template-columns: 1fr; /* كارت وحدة فالسطـر */
+  }
+
+  .card img {
+    height: 180px;
+  }
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>القرآن الكريم - رواية ورش</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
+
+    body {
+      font-family: 'Amiri', serif;
+      direction: rtl;
+      background: linear-gradient(135deg, #e9f5ec, #fdfcfb);
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: #0d6efd;
+      background: linear-gradient(90deg, #0d6efd, #198754);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+
+    select {
+      font-size: 18px;
+      padding: 10px;
+      margin: 15px 0;
+      border: 2px solid #198754;
+      border-radius: 10px;
+      background: #f9f9f9;
+      transition: 0.3s;
+    }
+    select:hover {
+      background: #e9f5ec;
+      border-color: #0d6efd;
+    }
+
+    .surah-title {
+      text-align: center;
+      margin: 20px 0;
+      font-size: 26px;
+      color: #198754;
+      border-bottom: 2px solid #e9ecef;
+      padding-bottom: 10px;
+    }
+
+    .ayah {
+      background: #fdfcfb;
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 12px;
+      border: 1px solid #e0e0e0;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+      font-size: 20px;
+      line-height: 2;
+      transition: 0.3s;
+    }
+    .ayah:hover {
+      background: #f8f9fa;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .ayah-number {
+      color: #c59d2f;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+
+    #loading {
+      text-align: center;
+      font-size: 20px;
+      color: #0d6efd;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>📖 القرآن الكريم - رواية ورش</h1>
+  </header>
+
+  <div class="container">
+    <div style="text-align:center;">
+      <label for="surahSelect" style="font-size:18px; font-weight:bold;">اختر سورة:</label><br>
+      <select id="surahSelect"></select>
+    </div>
+
+    <div id="loading">⬅️ اختر سورة لعرض آياتها</div>
+    <div id="quran"></div>
+  </div>
+
+  <script>
+    // API
+    const baseUrl = "https://api.alquran.cloud/v1";
+
+    // جلب قائمة السور
+    fetch(`${baseUrl}/surah`)
+      .then(res => res.json())
+      .then(data => {
+        const select = document.getElementById("surahSelect");
+        data.data.forEach(surah => {
+          let option = document.createElement("option");
+          option.value = surah.number;
+          option.textContent = `${surah.number}. ${surah.name}`;
+          select.appendChild(option);
+        });
+      });
+
+    // عند اختيار سورة
+    document.getElementById("surahSelect").addEventListener("change", function() {
+      const surahNumber = this.value;
+      document.getElementById("loading").textContent = "⏳ جارٍ تحميل السورة...";
+      document.getElementById("quran").innerHTML = "";
+
+      fetch(`${baseUrl}/surah/${surahNumber}/ar.warsh`)
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("loading").style.display = "none";
+          const container = document.getElementById("quran");
+
+          let surahTitle = document.createElement("h2");
+          surahTitle.className = "surah-title";
+          surahTitle.textContent = `سورة ${data.data.name}`;
+          container.appendChild(surahTitle);
+
+          data.data.ayahs.forEach(ayah => {
+            let div = document.createElement("div");
+            div.className = "ayah";
+            div.innerHTML = `
+              <span class="ayah-text">${ayah.text}</span>
+              <span class="ayah-number"> ﴿${ayah.numberInSurah}﴾</span>
+            `;
+            container.appendChild(div);
+          });
+        })
+        .catch(err => {
+          document.getElementById("loading").textContent = "⚠️ خطأ في تحميل السورة.";
+          console.error(err);
+        });
+    });
+  </script>
+</body>
+</html>
